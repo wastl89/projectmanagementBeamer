@@ -1,0 +1,24 @@
+\lstdefinestyle{sitListingStyle}{%
+    backgroundcolor=\color{sitGreen!10},
+    rulecolor=\color{sitGreen},
+    commentstyle=\color{greenH},           % Kommentarfarbe
+    keywordstyle={\color{blueH}\bfseries}, % Keywordfarbe
+    stringstyle =\itshape \color{redH},    % Stringfarbe
+    basicstyle=\ttfamily\small,
+    frame=lines,             % Framestil
+    numbers=left,            % Zeilennummern
+    showstringspaces=false,  % Leerzeichen werden nicht unterstrichen
+    %showtabs=false,         % tabs im string werden nicht gezeigt
+    breaklines=true,         % Zeilenumbruch aktiviert
+    captionpos=t,            % Beschriftung ist oberhalb=t, unterhalb=b
+    numberstyle=\tiny,       % kleine Zeilennummern
+    %numbersep=5pt,
+    %emph legt Farben für bestimmte Wörter manuell fest
+    emph={double,bool,int,unsigned,char,true,false,void},
+    emphstyle=\color{blue},
+    emph={Assert,Test},
+    emphstyle=\color{red},
+    emph={[2]\using,\#define,\#ifdef,\#endif,\#region,\#endregion},
+    emphstyle={[2]\color{blue}}
+}
+% eof

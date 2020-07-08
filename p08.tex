@@ -1,0 +1,33 @@
+%% Steuerung über <main>.handout.tex und <main>.beamer.tex
+\documentclass{beamer}
+\usepackage[pageofpages=of,titlepagelogo=hda/pp/hda/img/h-da_logo_fbeit,subsection=true]{hda/beamerthemehda}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+
+\usepackage[siunitx]{circuitikz}
+
+\usepackage{hda/beamerhdadefault}
+
+
+%% Define constant elements: title, author, institute and date
+\input{folien/titlepageDefinition}
+
+%% Define \thehdaVorlesung for output control in Title, Questions and Answers
+\newcounter{hdaVorlesung}
+\setcounter{hdaVorlesung}{08}
+
+%% Define variable elements: lecture and hdaVorlesung
+\lecture[Projekt 08]{Vergleich von Pegelwandler Topologien}{P00}
+\subtitle{Projekt \thehdaVorlesung{} -- \insertlecture{}}
+
+\begin{document}
+  \input{folien/titlepage} % Unique titlepage for all lessons.
+
+  \input{folien/presentationIndex}   % to let you run the examples
+
+  \sitSection{X}            % Position eXit to the right border.
+  \input{folien/thanks}    % Unique exitpage for all lessons.
+\end{document}
+% eof 

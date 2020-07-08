@@ -1,0 +1,25 @@
+% Copyright 2014 by Manfred Sielhorst
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+
+\mode<presentation>
+
+\DeclareOptionBeamer{alternativetitlepage}{\PassOptionsToPackage{alternativetitlepage=#1}{beamerinnerthemefancy}}
+\DeclareOptionBeamer{titlepagelogo}{\PassOptionsToPackage{titlepagelogo=#1}{beamerinnerthemefancy}}
+\DeclareOptionBeamer{bullet}{\PassOptionsToPackage{bullet=#1}{beamerinnerthemefancy}}
+\DeclareOptionBeamer{pageofpages}{\PassOptionsToPackage{pageofpages=#1}{beamerouterthemedecolines}}
+\DeclareOptionBeamer{titleline}[true]{\PassOptionsToPackage{titleline=#1}{beamerouterthemedecolines}}
+\DeclareOptionBeamer{subsection}[true]{\PassOptionsToPackage{subsection=#1}{beamerouterthemedecolines}}
+
+\ProcessOptionsBeamer
+
+\usepackage{hda/beamerinnerthemehda}
+\usepackage{hda/beamerouterthemehda}
+\usepackage{hda/beamercolorthemehda}
+
+\setbeamertemplate{navigation symbols}{}
+
+\mode<all>

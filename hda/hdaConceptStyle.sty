@@ -1,0 +1,391 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesClass{hda/hdaConceptStyle}
+              [2020/04/24 v2.5
+Sielhorst iT Beratung UG: concept style by jonathan sielhorst/ manfred sielhorst]
+% Define once, use everywhere
+
+\sitCopyright{2010-2020, Sielhorst \textcolor{sitGreen}i\textcolor{sitBlue}T Beratung UG}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% datatool & if,for
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{forloop}
+\usepackage{ifthen}
+\usepackage{datatool}
+\usepackage{verbatim}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{wasysym}  % spezielle Sonderzeichen wie \checked
+\usepackage{fancyvrb}
+\usepackage{moreverb}
+\usepackage{ulem}
+\usepackage{printlen, fancybox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% IBM Plex Font einsetzen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{hda/sty/font-plex}
+
+%\newenvironment{description}
+%{\list{}{%
+%    \labelwidth\z@ \itemindent-\leftmargin\let\makelabel\descriptionlabel}}
+%{\endlist}
+%\newcommand*\descriptionlabel[1]{\hspace\labelsep\normalfont\bfseries #1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SiT Farben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[table]{xcolor}
+\input{hda/sty/color-sit-logo}
+\input{hda/sty/color-hda}
+
+\usepackage{capt-of}
+%\usepackage{calc}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --PICUTRES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --LISTEN (need graphicx)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand\labelitemi{${\color{sitGreen}\raisebox{.15ex}{\scalebox{.60}{$\blacksquare$}}}$}
+\renewcommand\labelitemii{${\color{sitBlue}\raisebox{.15ex}{\scalebox{.60}{$\blacksquare$}}}$}
+\renewcommand\labelitemiii{${\color{hdaGrau2}\raisebox{.2ex}{\scalebox{.45}{$\blacksquare$}}}$}
+
+\newenvironment{description}
+               {\list{}{\labelwidth\z@ \itemindent-\leftmargin
+                        \let\makelabel\descriptionlabel}}
+               {\endlist}
+\newcommand*\descriptionlabel[1]{\hspace\labelsep
+                                \normalfont\bfseries #1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --TABLES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tabularx}
+\newcommand{\tablerowheight}[1]{\parbox[0pt][#1][c]{0cm}{}}
+\usepackage{hhline}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% -- PAGE LAYOUT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{geometry}
+\geometry{a4paper,twoside,textwidth=166mm,inner=24mm,top=52mm,headheight=30mm,headsep=9mm,bottom=30mm,footskip=13mm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --HEAD / FOOT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{fancyhdr}
+\let\myHeadrule\headrule %behält grundlegende Formatierung bei
+%\renewcommand\headrule{\color{sitGreen}\myHeadrule}
+\renewcommand\footrule{\textcolor{sitGreen}{\hrule height 2.5pt}\textcolor{sitBlue}{\hrule height 2pt}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --NORMAL
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fancypagestyle{headings}{%
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+  \fancyhead[LE,LO]{\leftmark}
+  \fancyhead[RE,RO]{\includegraphics[width=6cm]{\printHeaderLogo}}
+  \fancyfoot[RE,LO]{\textcopyright\space \printCopyright}
+  \fancyfoot[LE]{\thepage \parbox[c][24pt]{0.5cm}{\centering\textbullet} \printTitel}
+  \fancyfoot[RO]{\printTitel \parbox[c][24pt]{0.5cm}{\centering\textbullet} \thepage}%
+}
+\pagestyle{headings}
+
+%% --SONSTIGES
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Index Erstellung für sitHint, sitTip, sitWarning und sitTodo
+%% Gruppierung in idxInfo-\jobname
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{imakeidx,eurosym}
+\indexsetup{level=\subsection*,noclearpage,firstpagestyle=headings, headers={\leftmark}{\leftmark}}
+\makeindex
+\makeindex[name=idxInfo-\jobname, title=\sitLNGidxinfo]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Notizenseite
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcounter{notemaxlines}
+\newcounter{noteline}
+\newlength\noterest
+\newlength\noteminrest
+\newlength\notelineskip
+\setcounter{notemaxlines}{60}
+\newcommand*\sitNotes[1][\thenotemaxlines]{%
+  \section{\sitsecnote}\label{sec:sitNotes}%
+  \setcounter{noteline}{#1}% init
+  \setlength\notelineskip{10pt}%
+  \settoheight\noteminrest{\hrulefill}%
+  \addtolength\noteminrest{\baselineskip}%
+  \addtolength\noteminrest{\notelineskip}%
+  \whiledo{\value{noteline} > 0}{%
+    \addtocounter{noteline}{-1}%
+    \setlength\noterest{\pagegoal}%
+    \addtolength\noterest{-\pagetotal}%
+    \ifdim\noterest > \noteminrest
+      \vskip \notelineskip
+      \noindent\hrulefill\par
+    \else
+      \addtocounter{noteline}{-\value{notemaxlines}}%
+    \fi
+  }
+  \ifodd\value{page} {\newpage\sitNotesTwo} \else {} \fi
+}
+\newcommand*\sitNotesTwo[1][\thenotemaxlines]{%
+  \setcounter{noteline}{#1}% init
+  \setlength\notelineskip{10pt}%
+  \settoheight\noteminrest{\hrulefill}%
+  \addtolength\noteminrest{\baselineskip}%
+  \addtolength\noteminrest{\notelineskip}%
+  \whiledo{\value{noteline} > 0}{%
+    \addtocounter{noteline}{-1}%
+    \setlength\noterest{\pagegoal}%
+    \addtolength\noterest{-\pagetotal}%
+    \ifdim\noterest > \noteminrest
+      \vskip \notelineskip
+      \noindent\hrulefill\par
+    \else
+      \addtocounter{noteline}{-\value{notemaxlines}}%
+    \fi%
+  }%
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Titelseite
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand\maketitle{%
+\begin{titlepage}
+  \begin{center}
+    \null\bfseries
+    \Huge\printTitel
+
+    \ifthenelse{\equal{\printLogo}{none}}{}% None
+      {\includegraphics[width=10cm]{\printLogo}}%
+
+    \vspace{0.5cm}
+
+    \textsc{\LARGE\printSubtitel}\\
+    \vspace{0.5cm}
+    \Large Version \printVersion \space \sitcreatedat{} \printDatum \\
+    \sitcreatedby{} \printAutor
+  \end{center}
+\end{titlepage}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Anfang besteht aus titelseite, Dokumentinformationen (versionhistorie, anschrift), inhaltsverzeichnis
+%% Nummerrierung - römisch
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\makesitHead}{%
+  \maketitle%
+  \tableofcontents%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Anhang - Befehle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\sitAppendix}{\chapter{\sitappend}\label{chap:sitAppendix}}
+\newcommand{\sitBibliography}{\section{\bibname}\label{sec:sitBibliography}}
+\newcommand{\sitListOfHistory}{%
+  \section{Dokumentinformationen}\label{sec:sitListOfHistory}%
+  \sitTable{%
+      \begin{tabularx}{\textwidth}{@{} c l p{1.2cm} p{2.3cm} X @{}}%
+        \tablerowheight{2em} Version & \sitdocnfoDate & \sitdocnfoAuth & \sitdocnfoResp & \sitdocnfoDesc \\  \hhline{=====}%
+        \versiontable{2em}%
+      \end{tabularx}}%
+    {Dokumentinformationen}{tab-dokuhistorie}%
+}
+\newcommand{\sitListOfTables}{\listoftables}
+\newcommand{\sitListOfFigures}{\listoffigures}
+\newcommand{\sitListOfListings}{\listoflistings}
+\newcommand{\sitListOfIdxInfos}{\listofindexinfo}
+\newcommand{\sitListOfIdxTodos}{\listofindextodo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%-- bilder-macros
+%% bilder (im text)
+%% bilder (kein float)
+%% bilder (über Seitenhöhe)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{rotating}
+
+\newcommand{\sitButton}[1]{%
+  \includegraphics[height=\textsize]{#1}%
+}
+
+\newcommand{\sitPicture}[4][0.8\textwidth]{%
+  \begin{center}
+    \includegraphics[width=#1]{#2}%
+    \captionof{figure}{#3}%
+    \label{#4}
+  \end{center}
+  \vskip 10pt
+}
+
+\newcommand{\sitPictureSideways}[4][0.45]{%
+  \begin{sidewaysfigure}
+    \scalebox{#1}{\includegraphics{#2}}%
+    \caption{#3}%
+    \label{#4}
+  \end{sidewaysfigure}
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Tabellen Befehle
+%% bilder (kein float)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\sitTable}[3]{%
+  \renewcommand{\arraystretch}{1.2}
+  \begin{center}
+    \captionof{table}{#2}
+    \label{#3}
+    #1
+  \end{center}
+}
+
+%%
+%\newcommand{\sitTabular}[5][\textwidth]{% Breite, Format, Kopf, Inhalt, Bezeichnung,
+%  \sitTable{%
+%      \begin{tabular}{#1}{@{} #2 @{}}%
+%        \tablerowheight{2em} #3 \\  \hhline{=====}%
+%        #4
+%        \versiontable{2em}%
+%      \end{tabular}}%
+%    {#5}{tab_#5%
+%}
+
+%%Standard-Tabelle
+%\newcommand{\sitTable}[5]{
+%  \begin{table}
+%  \renewcommand{\arraystretch}{1.2}
+%  \begin{center}
+%    \begin{tabularx}{#1}{#2}
+%    #3
+%    \end{tabularx}
+%  \end{center}
+%  \captionof{table}{#4}
+%  \label{#5}
+%  \end{table}
+%}
+
+%Farbe für Titelzeile
+\newcommand*{\sitHeadrow}{\rowcolor{hdaBlau5}
+}
+
+%Farbe für ungerade Tabellenzeilen
+\newcommand*{\sitOddrow}{\rowcolor{white}}
+
+%Farbe für gerade Tabellenzeilen
+\newcommand*{\sitEvenrow}{\rowcolor{hdaGrau5}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Hinweis Befehle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{hda/sty/info-tip}
+\input{hda/sty/info-hint}
+\input{hda/sty/info-warning}
+\input{hda/sty/info-todo}
+\input{hda/sty/info-done}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Short Forms, used in this documentation
+%% Perfect Presentations names, logos of sit, sds, ps, h-da
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{hda/pp/hda/hda}
+\input{hda/pp/sit/sit}
+\input{hda/pp/sit/sds}
+\input{hda/pp/ps/ps}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Codeformatierung
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{listings}
+
+\input{hda/sty/listings-lstset}
+\input{hda/sty/listings-sitListingStyle}
+\input{hda/sty/listings-sitCode}
+\input{hda/sty/listings-lstdefinelanguage-CS}
+\input{hda/sty/listings-lstdefinelanguage-CLP}
+
+%LaTeX Code
+\newcommand{\sitLaTeXCode}[1][]{
+\begin{lstlisting}[
+language={[LaTeX]TeX},
+columns=flexible,
+breaklines=true,
+showstringspaces=false
+]
+#1
+\end{lstlisting}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%-- Farbeinstellungen für Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\definecolorset{rgb}{}{}{%
+red,1,0,0;green,0,0.5,0;blue,0,0,0.5}
+
+\providecolorset{rgb}{}{H}{%
+red,0.5,0,0;green,0,0.5,0;blue,0,0,0.5}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%-- Typographische Konventionen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Datenbankobjekte
+\newcommand{\sitDB}[1]{
+  \textsc{\textbf{\textcolor{hdaBlau5}{#1}}}
+}
+
+%sit Module
+\newcommand{\sitModul}[1]{
+  \textit{\textcolor{hdaBlau5}{#1}}
+}
+
+%sit Menue
+\newcommand{\sitMenue}[1]{
+  \colorbox{hdaGrau5}{#1}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%-- Hyperref Definitionen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[pdftex,colorlinks=true,pdfstartview=FitV,linkcolor=black,
+citecolor=blue,urlcolor=blue,plainpages=false,pdfpagelabels,
+pdftitle={Concept},
+pdfauthor={Sielhorst iT Beratung UG},
+pdfkeywords={Semantic Data Store, Power Students, Database Architectures in Practice, Reporting, Projekt Managment, Datenintegration, Datenhistorisierung}]{hyperref}
+
+\newcommand{\sitLink}[1]{
+  \urlstyle{same}
+  \url{#1}
+}
+
+\newcommand{\sitHref}[2][]{
+  \ifthenelse{\equal{#1}{}}{\sitLink{#2}}{\href{#2}{#1}}
+}
+
+\newcommand{\sithdrdocu}{DOCUMENTINFORMATION}
+\newcommand{\sitsecnote}{Notes}
+\newcommand{\sitof}{of}
+\newcommand{\sitdocnfohl}{Documentinformation}
+\newcommand{\sitdocnfoDate}{Date}
+\newcommand{\sitdocnfoDesc}{Description}
+\newcommand{\sitdocnfoAuth}{Author}
+\newcommand{\sitdocnfoResp}{Responsible}
+\newcommand{\sitdocnfopersonnfoa}{}
+\newcommand{\sitdocnfopersonnfob}{CEO: Manfred Sielhorst}
+\newcommand{\sitdocnfopersonnfoc}{District court: Darmstadt, HRB 89028}
+\newcommand{\sitdocnfoend}{For more details please visit our website:}
+\newcommand{\sitappend}{Appendix}
+\newcommand{\sitcreatedby}{by}
+\newcommand{\sitcreatedat}{created at }

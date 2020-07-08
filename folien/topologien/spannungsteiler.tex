@@ -1,0 +1,26 @@
+%% frame[]:  fragile, t,c,b, shrink=15
+\begin{frame}[c]{\frametitlelogo{Spannungsteiler
+}{hda/pp/hda/img/hda-fbe-logo}}
+
+\begin{figure}
+  \begin{circuitikz}
+    \draw<1> (0,4) node[right]{$input$}
+      to[R=$R1$] (0,2)
+      to[R=$R2$] (0,0) ;
+    \draw<2> (0,4) node[right]{$input$}
+      to[R=$R1$, v=$U_1$] (0,2)
+      to[R=$R2$] (0,0) ;
+    \draw<3> (0,4) node[right]{$input$}
+      to[R=$R1$, v=$U_1$] (0,2)
+      to[R=$R2$, v=$U_2$] (0,0) ;
+    \draw (0,0) node[ground] {} (0,-1);
+    \draw (0,2) to[short, -o] (1,2) node[right]{$output$};
+  \end{circuitikz}
+  \caption{Spannungsteiler}
+  \label{fig:spannungsteiler}
+\end{figure}
+  
+
+
+\end{frame}
+% eof 

@@ -1,0 +1,41 @@
+\documentclass{hda/hdaConceptClass}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hda/hdaConceptStyle}
+
+\bibliographystyle{hda/hda}    % Einbinden der Stildatei
+
+\sitTitel{\LaTeX{}-Nutzung mit hdaConcept }
+\sitSubtitel{Benutzerhandbuch}
+\sitVersion{2.4}
+\sitAutor{Manfred Sielhorst}
+\sitDatum{15.03.2020}
+
+\newcommand{\versiontable}[1]{% Ausführlicher Eintrag vs. Kurzformen
+  \tablerowheight{#1} 1.0  % Versionsnummer
+    & 1.12.2011            % Datum
+    & JSi                  % Kurzzeichen Autor
+    & MSi                  % Kurzzeichen Verantwortlich
+    & Version für SiT      % Kommentar
+    \\ \tablerowheight{#1} 2.4  & 15.03.2020 & MSi & MSi
+        & Update zu sit/hda Vorlagen Vers. 2.4
+    \\ \hline
+  }
+
+\usepackage[de]{hda/hdaLanguage}
+\begin{document}
+\makesitHead
+
+\include{in/ug-sit-latex}    % \include -> newpage, sonst \input nutzen
+\include{in/ug-hda-ausblick}
+
+\sitAppendix                 % Kommentiere Einträge, falls nicht erwünscht.
+  \sitListOfHistory
+  \sitListOfTables
+  \sitListOfFigures
+  \sitListOfListings
+  \sitListOfIdxInfos
+  \bibliography{hda-latex}
+  \sitNotes
+\end{document}
+% eof

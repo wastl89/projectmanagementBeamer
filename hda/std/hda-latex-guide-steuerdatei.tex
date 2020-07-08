@@ -1,0 +1,45 @@
+\documentclass{hda/hdaGuideClass}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hda/hdaGuideStyle}
+
+\bibliographystyle{hda/hda}    % Einbinden der Stildatei
+
+\sitTitel{\LaTeX{}-Nutzung mit hdaGuide}
+\sitSubtitel{Benutzerhandbuch}
+\sitVersion{2.4}
+\sitAutor{Manfred Sielhorst}
+\sitDatum{15.03.2020}
+
+\logo[stdLogo]  % 'stdLogo' sonst Grafik aus Verzeichnis 'img/*.png'
+
+\newcommand{\versiontable}[1]{% Ausführlicher Eintrag vs. Kurzformen
+  \tablerowheight{#1} 1.0  % Versionsnummer
+    & 1.12.2011            % Datum
+    & JSi                  % Kurzzeichen Autor
+    & MSi                  % Kurzzeichen Verantwortlich
+    & Version für SiT      % Kommentar
+    \\ \tablerowheight{#1} 2.4  & 15.03.2020 & MSi & MSi
+        & Update zu sit/hda Vorlagen Vers. 2.4
+    \\ \hline
+  }
+
+\usepackage[de]{hda/hdaLanguage}
+\begin{document}
+\makesitHead
+\begin{sitContent}
+
+\include{in/ug-sit-latex}    % \include -> newpage, sonst \input nutzen
+\include{in/ug-hda-ausblick}
+
+\sitAppendix                 % Kommentiere Einträge, falls nicht erwünscht.
+  \sitListOfTables
+  \sitListOfFigures
+  \sitListOfListings
+  \sitListOfIdxInfos
+  \bibliography{hda-latex}
+  \sitNotes
+  \sitFeedback
+\end{sitContent}
+\end{document}
+% eof

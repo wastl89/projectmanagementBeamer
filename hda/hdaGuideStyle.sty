@@ -1,0 +1,503 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesClass{hda/hdaGuideStyle}
+              [2020/04/24 v2.5
+Sielhorst iT Beratung UG: guide style by jonathan sielhorst/ manfred sielhorst]
+% Define once, use everywhere
+
+\sitCopyright{2010-2020, Sielhorst \textcolor{sitGreen}i\textcolor{sitBlue}T Beratung UG}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% datatool & if,for
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{forloop}
+\usepackage{ifthen}
+\usepackage{datatool}
+\usepackage{verbatim}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{wasysym}  % spezielle Sonderzeichen wie \checked
+\usepackage{fancyvrb}
+\usepackage{moreverb}
+\usepackage{ulem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% IBM Plex Font einsetzen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{hda/sty/font-plex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SiT Farben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[table]{xcolor}
+\input{hda/sty/color-sit-logo}
+\input{hda/sty/color-hda}
+
+\usepackage{capt-of}
+%\usepackage{calc}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --PICUTRES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --LISTEN (need graphicx)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand\labelitemi{${\color{sitGreen}\raisebox{.15ex}{\scalebox{.60}{$\blacksquare$}}}$}
+\renewcommand\labelitemii{${\color{sitBlue}\raisebox{.15ex}{\scalebox{.60}{$\blacksquare$}}}$}
+\renewcommand\labelitemiii{${\color{hdaGrau2}\raisebox{.2ex}{\scalebox{.45}{$\blacksquare$}}}$}
+
+\newenvironment{description}
+               {\list{}{\labelwidth\z@ \itemindent-\leftmargin
+                        \let\makelabel\descriptionlabel}}
+               {\endlist}
+\newcommand*\descriptionlabel[1]{\hspace\labelsep
+                                \normalfont\bfseries #1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --TABLES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tabularx}
+\newcommand{\tablerowheight}[1]{\parbox[0pt][#1][c]{0cm}{}}
+\usepackage{hhline}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% -- PAGE LAYOUT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{geometry}
+\geometry{a4paper,twoside,textwidth=166mm,inner=24mm,top=52mm,headheight=30mm,headsep=9mm,bottom=30mm,footskip=13mm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --HEAD / FOOT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{fancyhdr}
+\let\myHeadrule\headrule %behält grundlegende Formatierung bei
+%\renewcommand\headrule{\color{sitGreen}\myHeadrule}
+\renewcommand\footrule{\textcolor{sitGreen}{\hrule height 2.5pt}\textcolor{sitBlue}{\hrule height 2pt}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% --TITEL / SECTION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  %\renewcommand{\footrulewidth}{0.4pt}%0pt
+  \fancyhead[RO,LE]{\null\hfill \includegraphics[width=6cm]{\printHeaderLogo}}
+  \fancyfoot[LO,LE]{\textcopyright\space \printCopyright}
+  \fancyfoot[RE,LO]{\textcopyright\space \printCopyright}
+  \fancyfoot[LE]{\thepage \parbox[c][24pt]{0.5cm}{\centering\textbullet} \printTitel}
+  \fancyfoot[RO]{\printTitel \parbox[c][24pt]{0.5cm}{\centering\textbullet} \thepage}%
+}
+\fancypagestyle{myplain}{%
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+%  \fancyhead[RO,LE]{\null\hfill \includegraphics[width=6cm]{\printHeaderLogo}}%
+%  \fancyfoot[LO,LE]{\textcopyright\space \printCopyright}
+%  \fancyfoot[RE,LO]{\textcopyright\space \printCopyright}
+%  \fancyfoot[LE]{\thepage \parbox[c][24pt]{0.5cm}{\centering\textbullet} \printTitel}
+%  \fancyfoot[RO]{\printTitel \parbox[c][24pt]{0.5cm}{\centering\textbullet} \thepage}%
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --NORMAL
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fancypagestyle{headings}{%
+  \fancyhf{}
+%  \pagenumbering{arabic}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+  \fancyhead[RE,LO]{\leftmark}
+  \fancyhead[LE,RO]{\parbox[0pt][28pt][c]{0cm}{}\printSubtitel}
+  \fancyfoot[RE,LO]{\textcopyright\space \printCopyright}
+  \fancyfoot[LE]{\thepage \parbox[c][24pt]{0.5cm}{\centering\textbullet} \printTitel}
+  \fancyfoot[RO]{\printTitel \parbox[c][24pt]{0.5cm}{\centering\textbullet} \thepage}%
+}
+
+\fancypagestyle{myheadings}{%
+  \fancyhf{}
+%  \pagenumbering{Romanic}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+  \fancyhead[RE,LO]{\sithdrdocu}
+  \fancyhead[LE,RO]{\parbox[0pt][28pt][c]{0cm}{}\printSubtitel}
+  \fancyfoot[RE,LO]{\textcopyright\space \printCopyright}
+  \fancyfoot[LE]{\thepage \parbox[c][24pt]{0.5cm}{\centering\textbullet} \printTitel}
+  \fancyfoot[RO]{\printTitel \parbox[c][24pt]{0.5cm}{\centering\textbullet} \thepage}%
+}
+
+\fancypagestyle{empty}{%
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+  \fancyfoot[RE,LO]{\textcopyright\space \printCopyright}
+  \fancyfoot[LE]{\thepage \parbox[c][24pt]{0.5cm}{\centering\textbullet} \printTitel}
+  \fancyfoot[RO]{\printTitel \parbox[c][24pt]{0.5cm}{\centering\textbullet} \thepage}%
+}
+\pagestyle{headings}
+
+%% --SONSTIGES
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Index Erstellung für sitHint, sitTip, sitWarning und sitTodo
+%% Gruppierung in idxInfo-\jobname
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{imakeidx,eurosym}
+\indexsetup{level=\subsection*,noclearpage,firstpagestyle=headings, headers={\leftmark}{\leftmark}}
+\makeindex
+\makeindex[name=idxInfo-\jobname, title=\sitLNGidxinfo]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Notizenseite
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcounter{notemaxlines}
+\newcounter{noteline}
+\newlength\noterest
+\newlength\noteminrest
+\newlength\notelineskip
+\setcounter{notemaxlines}{60}
+\newcommand*\sitNotes[1][\thenotemaxlines]{%
+  \clearpage
+  \section{\sitsecnote}\label{sec:sitNotes}%
+  \setcounter{noteline}{#1}% init
+  \setlength\notelineskip{10pt}%
+  \settoheight\noteminrest{\hrulefill}%
+  \addtolength\noteminrest{\baselineskip}%
+  \addtolength\noteminrest{\notelineskip}%
+  \whiledo{\value{noteline} > 0}{%
+    \addtocounter{noteline}{-1}%
+    \setlength\noterest{\pagegoal}%
+    \addtolength\noterest{-\pagetotal}%
+    \ifdim\noterest > \noteminrest
+      \vskip \notelineskip
+      \noindent\hrulefill\par
+    \else
+      \addtocounter{noteline}{-\value{notemaxlines}}%
+    \fi
+  }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Feedbackseite
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\sitFeedback}{%
+  \section{Feedback}\label{sec:sitFeedback}
+  \sitfba
+  \vskip 1em
+  \sitfbb
+  \vskip 1.5em%
+  \begin{flushright}
+    {\tt\LARGE\centering \href{mailto:service@sielhorst-it.de}{service@sielhorst-it.de}}
+  \end{flushright}
+  \vskip 1.5em%
+  \sitfbc \\
+  \vskip 1.5em%
+  \begin{flushright}
+    {\tt\LARGE\centering +49 (6151) 506 123}\\
+  \end{flushright}
+  \vskip 1.5em%
+  \sitfbd \\
+  \vskip 2em
+  \begin{tabularx}{\textwidth}{@{} p{3cm} X @{}}\hline
+    \tablerowheight{3em} \sitfbformcomp &  \\ \hline
+    \tablerowheight{3em} \sitfbformcon &  \\ \hline
+    \tablerowheight{3em} \sitfbformtel &  \\ \hline
+    \tablerowheight{3em} \sitfbformfax &  \\ \hline
+    \tablerowheight{3em} \sitfbformcomment &  \\ \hline
+  \end{tabularx}
+  \newcounter{fbnotemaxlines}
+  \newcounter{fbnoteline}
+  \newlength\fbnoterest
+  \newlength\fbnoteminrest
+  \newlength\fbnotelineskip
+  \setcounter{fbnotemaxlines}{60}
+  \setcounter{fbnoteline}{\thefbnotemaxlines}% init
+  \setlength\fbnotelineskip{12pt}%
+  \settoheight\fbnoteminrest{\hrulefill}%
+  \addtolength\fbnoteminrest{\baselineskip}%
+  \addtolength\fbnoteminrest{\fbnotelineskip}%
+  \whiledo{\value{fbnoteline} > 0}{%
+    \addtocounter{fbnoteline}{-1}%
+    \setlength\fbnoterest{\pagegoal}%
+    \addtolength\fbnoterest{-\pagetotal}%
+    \ifdim\fbnoterest > \fbnoteminrest
+      \vskip \fbnotelineskip
+      \noindent\hrulefill\par
+    \else
+      \addtocounter{fbnoteline}{-\value{fbnotemaxlines}}%
+    \fi
+  }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Titelseite
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand\maketitle{%
+\begin{titlepage}
+    %\textcolor{sitGreen}{\vrule height 10cm}
+        \begin{center}
+            \null\vfill
+            \includegraphics[width=10cm]{\printLogo}
+            \vspace{2cm}
+            \sitHrule{\bfseries
+            \vspace{0.7cm}
+            \Huge\printTitel \\
+            \vspace{1.5cm}
+            \textsc{\LARGE\printSubtitel}
+            \vspace{0.7cm}}
+            \sitHrule
+            \vspace{1.5cm}
+            {\Large Version \printVersion \space \sitof\ \printDatum}
+        \end{center}
+    \vfill
+\end{titlepage}%
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Anfang besteht aus titelseite, Dokumentinformationen (versionhistorie, anschrift), inhaltsverzeichnis
+%% Nummerrierung - römisch
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\makesitHead}{%
+\begin{sithead}
+  \maketitle
+  \begin{docuinfo} %$\;$
+    \section*{\sitdocnfohl}\label{sec:sitListOfHistory}
+    \sitTable{%
+      \begin{tabularx}{\textwidth}{@{} c l p{1.2cm} p{2.3cm} X @{}}
+        \tablerowheight{2em} Version & \sitdocnfoDate & \sitdocnfoAuth & \sitdocnfoResp & \sitdocnfoDesc \\  \hhline{=====}%
+        \versiontable{2em}
+      \end{tabularx}}
+    {\sitdocnfohl}{tab-dokuhistorie}
+    \vfill
+    \parindent 0pt
+    \linespread{1.2}
+    \textbf{Sielhorst \textcolor{sitGreen}i\textcolor{sitBlue}T Beratung UG}\\
+        (haftungsbeschränkt)\\
+    Sachsenstraße 13\\
+    64297 Darmstadt\\
+    Tel.: +49 (6151) 506 148\\
+    Fax: +49 (6151) 506 123\\
+    E-Mail: \href{mailto:service@sielhorst-it.de}{service@sielhorst-it.de}\\
+    \sitdocnfopersonnfoa \\
+    \sitdocnfopersonnfob \\
+    \sitdocnfopersonnfoc \\
+    \\
+    \sitdocnfoend \\
+    \sitHref{http://www.sielhorst-it.de/} \\
+
+    \normalsize
+  \end{docuinfo}
+  \dominitoc
+  \tableofcontents
+\end{sithead}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Anhang - Befehle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\sitAppendix}{\chapter{\sitappend}\label{chap:sitAppendix}}
+\newcommand{\sitBibliography}{\section{\bibname}\label{sec:sitBibliography}}
+
+\newcommand{\sitListOfTables}{\listoftables}
+\newcommand{\sitListOfFigures}{\listoffigures}
+\newcommand{\sitListOfListings}{\listoflistings}
+\newcommand{\sitListOfIdxInfos}{\listofindexinfo}
+\newcommand{\sitListOfIdxTodos}{\listofindextodo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%-- bilder-macros
+%% bilder (im text)
+%% bilder (kein float)
+%% bilder (über Seitenhöhe)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{rotating}
+
+\newcommand{\sitButton}[1]{%
+  \includegraphics[height=\textsize]{#1}%
+}
+
+\newcommand{\sitPicture}[4][0.8\textwidth]{%
+  \begin{center}
+    \includegraphics[width=#1]{#2}%
+    \captionof{figure}{#3}%
+    \label{#4}
+  \end{center}
+  \vskip 10pt
+}
+
+\newcommand{\sitPictureSideways}[4][0.45]{%
+  \begin{sidewaysfigure}
+    \scalebox{#1}{\includegraphics{#2}}%
+    \caption{#3}%
+    \label{#4}
+  \end{sidewaysfigure}
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Tabellen Befehle
+%% bilder (kein float)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\sitTable}[3]{%
+  \renewcommand{\arraystretch}{1.2}
+  \begin{center}
+    #1
+    \captionof{table}{#2}%
+    \label{#3}
+  \end{center}
+}
+
+%%Standard-Tabelle
+%\newcommand{\sitTable}[5]{
+%  \begin{table}
+%  \renewcommand{\arraystretch}{1.2}
+%  \begin{center}
+%    \begin{tabularx}{#1}{#2}
+%    #3
+%    \end{tabularx}
+%  \end{center}
+%  \captionof{table}{#4}
+%  \label{#5}
+%  \end{table}
+%}
+
+%Farbe für Titelzeile
+\newcommand*{\sitHeadrow}{\rowcolor{hdaBlau5}
+}
+
+%Farbe für ungerade Tabellenzeilen
+\newcommand*{\sitOddrow}{\rowcolor{white}}
+
+%Farbe für gerade Tabellenzeilen
+\newcommand*{\sitEvenrow}{\rowcolor{hdaGrau5}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Hinweis Befehle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{hda/sty/info-tip}
+\input{hda/sty/info-hint}
+\input{hda/sty/info-warning}
+\input{hda/sty/info-todo}
+\input{hda/sty/info-done}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Short Forms, used in this documentation
+%% Perfect Presentations names, logos of sit, sds, ps, h-da
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{hda/pp/hda/hda}
+\input{hda/pp/sit/sit}
+\input{hda/pp/sit/sds}
+\input{hda/pp/ps/ps}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Codeformatierung
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{listings}
+
+\input{hda/sty/listings-lstset}
+\input{hda/sty/listings-sitListingStyle}
+\input{hda/sty/listings-sitCode}
+\input{hda/sty/listings-lstdefinelanguage-CS}
+\input{hda/sty/listings-lstdefinelanguage-CLP}
+
+%LaTeX Code
+\newcommand{\sitLaTeXCode}[1][]{
+\begin{lstlisting}[
+language={[LaTeX]TeX},
+columns=flexible,
+breaklines=true,
+showstringspaces=false
+]
+#1
+\end{lstlisting}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%-- Farbeinstellungen für Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\definecolorset{rgb}{}{}{%
+red,1,0,0;green,0,0.5,0;blue,0,0,0.5}
+
+\providecolorset{rgb}{}{H}{%
+red,0.5,0,0;green,0,0.5,0;blue,0,0,0.5}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%-- Typographische Konventionen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Datenbankobjekte
+\newcommand{\sitDB}[1]{
+  \textsc{\textbf{\textcolor{hdaBlau5}{#1}}}
+}
+
+%sit Module
+\newcommand{\sitModul}[1]{
+  \textit{\textcolor{hdaBlau5}{#1}}
+}
+
+%sit Menue
+\newcommand{\sitMenue}[1]{
+  \colorbox{hdaGrau5}{#1}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%-- Hyperref Definitionen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[pdftex,colorlinks=true,pdfstartview=FitV,linkcolor=black,
+citecolor=blue,urlcolor=blue,plainpages=false,pdfpagelabels,
+pdftitle={Guide},
+pdfauthor={Sielhorst iT Beratung UG},
+pdfkeywords={Semantic Data Store, Power Students, Database Architectures in Practice, Reporting, Projekt Managment, Datenintegration, Datenhistorisierung}]{hyperref}
+
+\newcommand{\sitLink}[1]{
+  \urlstyle{same}
+  \url{#1}
+}
+
+\newcommand{\sitHref}[2][]{
+  \ifthenelse{\equal{#1}{}}{\sitLink{#2}}{\href{#2}{#1}}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% KAPITEL INHALTSVERZEICHNIS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{minitoc}
+\mtcsetrules{minitoc}{off}
+\mtcsetdepth{minitoc}{2}
+\renewcommand{\mtifont}{\large\sffamily}
+\renewcommand{\mtcfont}{\sffamily}
+\renewcommand{\mtcSfont}{\sffamily}
+\renewcommand{\mtcSSfont}{\sffamily}
+\renewcommand{\mtcPfont}{\sffamily}
+\renewcommand{\mtcSPfont}{\sffamily}
+\setlength{\mtcindent}{20pt}
+\renewcommand{\familydefault}{\sfdefault}
+
+\newcommand{\sithdrdocu}{DOCUMENTINFORMATION}
+\newcommand{\sitsecnote}{Notes}
+\newcommand{\sitfba}{You have identified an error? You ask for a change? You want to order another printed copy of this document? You have further questions regarding this document?}
+\newcommand{\sitfbb}{Please send us your request by mail to }
+\newcommand{\sitfbc}{or send us a fax to}
+\newcommand{\sitfbd}{by using this form:}
+\newcommand{\sitfbformcomp}{Company}
+\newcommand{\sitfbformcon}{Contact}
+\newcommand{\sitfbformtel}{Telephone}
+\newcommand{\sitfbformfax}{Faxnumber}
+\newcommand{\sitfbformcomment}{Comment}
+\newcommand{\sitof}{of}
+\newcommand{\sitdocnfohl}{Documentinformation}
+\newcommand{\sitdocnfoDate}{Date}
+\newcommand{\sitdocnfoDesc}{Description}
+\newcommand{\sitdocnfoAuth}{Author}
+\newcommand{\sitdocnfoResp}{Responsible}
+\newcommand{\sitdocnfopersonnfoa}{}
+\newcommand{\sitdocnfopersonnfob}{CEO: Manfred Sielhorst}
+\newcommand{\sitdocnfopersonnfoc}{District court: Darmstadt, HRB 89028}
+\newcommand{\sitdocnfoend}{For more details please visit our website:}
+\newcommand{\sitappend}{Appendix}
+\newcommand{\sitcreatedby}{by}
+\newcommand{\sitcreatedat}{created at }

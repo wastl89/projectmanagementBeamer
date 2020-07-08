@@ -1,0 +1,12 @@
+\newcommand{\sitTip}[2][\sitLNGstdtip]{
+\begin{minipage}[t]{\linewidth}
+  \setlength\arrayrulewidth{4pt}
+	\begin{tabularx}{\linewidth}{r !{\color{infoGreen}\vline} X}
+        \raisebox{-10pt}[0mm][0mm]{%
+            \includegraphics[origin=c,width=22pt]{hda/img/info-icon-tip.png}}
+            & {\Large #1} \\
+            & #2
+        \index[idxInfo-\jobname]{C@\sitLNGidxtips ! #1}
+	\end{tabularx}
+\end{minipage}
+} 

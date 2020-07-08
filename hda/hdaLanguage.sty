@@ -1,0 +1,294 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesClass{hda/hdaLanguage}
+              [2020/05/23 v2.3, 2016/2020 für Hochschule Darmstadt (FBI/FBEIT)
+              Sprachdatei by Manfred Sielhorst]
+
+%% Defines language independent commands for structure element text
+%%  in the given language. If no language is given, German is
+%%  selected automatically.
+
+%% \sitLNG* should not be used directly. It should overwrite the
+%%  command without LNG at the end of the document
+
+\newcommand{\sitLNGptctitle}{Inhaltsverzeichnis}%
+\newcommand{\sitLNGplftitle}{Bildverzeichnis}%
+\newcommand{\sitLNGplttitle}{Tabellenverzechnis}%
+\newcommand{\sitLNGplbtitle}{Literaturverzeichnis}%
+\newcommand{\sitLNGmtctitle}{Inhalt}%
+\newcommand{\sitLNGmlftitle}{Bilder}%
+\newcommand{\sitLNGmlttitle}{Tabellen}%
+\newcommand{\sitLNGstctitle}{Inhalt}%
+\newcommand{\sitLNGslftitle}{Bilder}%
+\newcommand{\sitLNGslttitle}{Tabellen}%
+\newcommand{\sitLNGidxinfo}{Informationen}%
+\newcommand{\sitLNGidxtips}{Tips}%
+\newcommand{\sitLNGidxhints}{Hinweise}%
+\newcommand{\sitLNGidxwarnings}{Warnungen}%
+\newcommand{\sitLNGstdtip}{Tipp}%
+\newcommand{\sitLNGstdhint}{Hinweis}%
+\newcommand{\sitLNGstdwarning}{Warnung}%
+\newcommand{\sitLNGidxtodos}{ToDo's}%
+\newcommand{\sitLNGstdtodo}{ToDo}%
+\newcommand{\sitLNGidxdone}{Done}%
+\newcommand{\sitLNGstddone}{Done}%
+\newcommand{\sitLNGhdrdocu}{DOKUMENTINFORMATIONEN}%
+\newcommand{\sitLNGsecnote}{Notizen}%
+\newcommand{\sitLNGfba}{Ihnen ist ein Fehler aufgefallen? Sie wünschen Änderungen? Sie wollen ein weiteres Exemplar dieses Dokuments bestellen? Sie haben sonstige Fragen zu diesem Dokument?}%
+\newcommand{\sitLNGfbb}{Bitte senden Sie uns Ihr Anliegen entweder per E-Mail an}%
+\newcommand{\sitLNGfbc}{oder senden Sie uns ein Fax an}%
+\newcommand{\sitLNGfbd}{unter Verwendung dieser Vorlage:}%
+\newcommand{\sitLNGfbformcomp}{Firma}%
+\newcommand{\sitLNGfbformcon}{Ansprechpartner}%
+\newcommand{\sitLNGfbformtel}{Telefon}%
+\newcommand{\sitLNGfbformfax}{Faxnummer}%
+\newcommand{\sitLNGfbformcomment}{Bemerkungen}%
+\newcommand{\sitLNGof}{vom}%
+\newcommand{\sitLNGdocnfoDate}{Datum}%
+\newcommand{\sitLNGdocnfoDesc}{Beschreibung}%
+\newcommand{\sitLNGdocnfoAuth}{Autor}%
+\newcommand{\sitLNGdocnfoResp}{Verantwortlich}%
+\newcommand{\sitLNGdocnfohl}{Dokumentinformationen}%
+\newcommand{\sitLNGdocnfopersonnfoa}{}%
+\newcommand{\sitLNGdocnfopersonnfob}{Geschäftsführer: Manfred Sielhorst}%
+\newcommand{\sitLNGdocnfopersonnfoc}{Amtsgericht: Darmstadt, HRB 89028 }%
+\newcommand{\sitLNGdocnfoend}{Bitte besuchen Sie unsere Web-Site für weitere Details:}%
+\newcommand{\sitLNGappend}{Anhang}%
+\newcommand{\sitLNGbib}{Literaturverzeichnis}%
+\newcommand{\sitLNGcontentsname}{Inhaltsverzeichnis}
+\newcommand{\sitLNGlistfigurename}{Bildverzeichnis}
+\newcommand{\sitLNGlisttablename}{Tabellenverzeichnis}
+\newcommand{\sitLNGlistlistingsname}{Quellcodeverzeichnis}
+\newcommand{\sitLNGrefname}{Referenzen}
+\newcommand{\sitLNGindexname}{Index}
+\newcommand{\sitLNGfigurename}{Bild}
+\newcommand{\sitLNGtablename}{Tabelle}
+\newcommand{\sitLNGchaptername}{Kapitel}
+\newcommand{\sitLNGpart}{Teil}
+\newcommand{\sitLNGappendixname}{Anhang}
+\newcommand{\sitLNGabstractname}{Zusammenfassung}
+\newcommand{\sitLNGcreatedat}{erstellt am}
+\newcommand{\sitLNGcreatedby}{von}
+\newcommand{\sitLNGhandedin}{Eingereicht von}%
+\newcommand{\sitLNGat}{am}%
+\newcommand{\sitLNGreferent}{Referent}%
+\newcommand{\sitLNGkorreferent}{Korreferent}%
+\newcommand{\sitLang}{de}
+
+\DeclareOption{de}{}%
+
+\DeclareOption{en}{%
+    \renewcommand{\sitLNGptctitle}{Contents}%
+    \renewcommand{\sitLNGplftitle}{List of Figures}%
+    \renewcommand{\sitLNGplttitle}{List of Tables}%
+    \renewcommand{\sitLNGmtctitle}{Contents}%
+    \renewcommand{\sitLNGmlftitle}{Figure}%
+    \renewcommand{\sitLNGmlttitle}{Table}%
+    \renewcommand{\sitLNGstctitle}{Contents}%
+    \renewcommand{\sitLNGslftitle}{Figure}%
+    \renewcommand{\sitLNGslttitle}{Table}%
+    \renewcommand{\sitLNGidxtips}{Tips}%
+    \renewcommand{\sitLNGidxhints}{Hints}%
+    \renewcommand{\sitLNGidxwarnings}{Warnings}%
+    \renewcommand{\sitLNGstdtip}{Tip}%
+    \renewcommand{\sitLNGstdhint}{Hint}%
+    \renewcommand{\sitLNGstdwarning}{Warning}%
+    \renewcommand{\sitLNGidxtodos}{ToDo's}%
+    \renewcommand{\sitLNGstdtodo}{ToDo}%
+    \renewcommand{\sitLNGidxdone}{Done}%
+    \renewcommand{\sitLNGstddone}{Done}%
+    \renewcommand{\sitLNGhdrdocu}{DOCUMENTINFORMATION}%
+    \renewcommand{\sitLNGsecnote}{Notes}%
+    \renewcommand{\sitLNGfba}{You have identified an error? You ask for a change? You want to order another copy of this document? You have further questions regarding this document?}
+    \renewcommand{\sitLNGfbb}{Please send us your request by email to }%
+    \renewcommand{\sitLNGfbc}{or send us a fax to}%
+    \renewcommand{\sitLNGfbd}{by using this form:}%
+    \renewcommand{\sitLNGfbformcomp}{Company}%
+    \renewcommand{\sitLNGfbformcon}{Contact}%
+    \renewcommand{\sitLNGfbformtel}{Telephone}%
+    \renewcommand{\sitLNGfbformfax}{Faxnumber}%
+    \renewcommand{\sitLNGfbformcomment}{Comment}%
+    \renewcommand{\sitLNGof}{of}%
+    \renewcommand{\sitLNGdocnfoDate}{Date}%
+    \renewcommand{\sitLNGdocnfoDesc}{Description}%
+    \renewcommand{\sitLNGdocnfoAuth}{Author}%
+    \renewcommand{\sitLNGdocnfoResp}{Responsible}%
+    \renewcommand{\sitLNGdocnfohl}{Documentinformation}%
+    \renewcommand{\sitLNGdocnfopersonnfoa}{}%
+    \renewcommand{\sitLNGdocnfopersonnfob}{CEO: Manfred Sielhorst}%
+    \renewcommand{\sitLNGdocnfopersonnfoc}{District court: Darmstadt, HRB 89028 }%
+    \renewcommand{\sitLNGdocnfoend}{For more details please visit our website:}%
+    \renewcommand{\sitLNGappend}{Appendix}%
+    \renewcommand{\sitLNGbib}{Bibliography}%
+    \renewcommand{\sitLNGcontentsname}{Contents}%
+    \renewcommand{\sitLNGlistfigurename}{List of figures}%
+    \renewcommand{\sitLNGlisttablename}{List of tables}%
+    \renewcommand{\sitLNGlistlistingsname}{List of listings}
+    \renewcommand{\sitLNGrefname}{References}%
+    \renewcommand{\sitLNGindexname}{Index}%
+    \renewcommand{\sitLNGfigurename}{Figure}%
+    \renewcommand{\sitLNGtablename}{Table}%
+    \renewcommand{\sitLNGchaptername}{Chapter}%
+    \renewcommand{\sitLNGpart}{Part}%
+    \renewcommand{\sitLNGappendixname}{Appendix}%
+    \renewcommand{\sitLNGabstractname}{Abstract}%
+    \renewcommand{\sitLNGcreatedat}{created at}%
+    \renewcommand{\sitLNGcreatedby}{by}%
+    \renewcommand{\sitLNGhandedin}{Handed in}%
+    \renewcommand{\sitLNGat}{at}%
+    \renewcommand{\sitLNGreferent}{Examiner}%
+    \renewcommand{\sitLNGkorreferent}{Second Examiner}%
+    \renewcommand{\sitLang}{en}%
+}
+
+\DeclareOption{fr}{%
+    \renewcommand{\sitLNGptctitle}{Contents}%
+    \renewcommand{\sitLNGplftitle}{List of Figures}%
+    \renewcommand{\sitLNGplttitle}{List of Tables}%
+    \renewcommand{\sitLNGmtctitle}{Contents}%
+    \renewcommand{\sitLNGmlftitle}{Figure}%
+    \renewcommand{\sitLNGmlttitle}{Table}%
+    \renewcommand{\sitLNGstctitle}{Contents}%
+    \renewcommand{\sitLNGslftitle}{Figure}%
+    \renewcommand{\sitLNGslttitle}{Table}%
+    \renewcommand{\sitLNGidxtips}{Astuces}%
+    \renewcommand{\sitLNGidxhints}{Remarques}%
+    \renewcommand{\sitLNGidxwarnings}{Avertissements}%
+    \renewcommand{\sitLNGstdtip}{Astuce}%
+    \renewcommand{\sitLNGstdhint}{Remarque}%
+    \renewcommand{\sitLNGstdwarning}{Avertissement}%
+    \renewcommand{\sitLNGidxtodos}{ToDo's}%
+    \renewcommand{\sitLNGstdtodo}{ToDo}%
+    \renewcommand{\sitLNGidxdone}{Done}%
+    \renewcommand{\sitLNGstddone}{Done}%
+    \renewcommand{\sitLNGhdrdocu}{INFORMATIONS SUR LE DOCUMENT}%
+    \renewcommand{\sitLNGsecnote}{Notes}%
+    \renewcommand{\sitLNGfba}{Vous avez remarqué une erreur? Vous voulez des changements? Vous souhaitez commander une copie de ce document? Vous avez d'autres questions sur ce document?}
+    \renewcommand{\sitLNGfbb}{Veuillez nous envoyer votre demande par courrier électronique à}%
+    \renewcommand{\sitLNGfbc}{ou envoyez-nous un fax à}%
+    \renewcommand{\sitLNGfbd}{en utilisant ce formulaire:}%
+    \renewcommand{\sitLNGfbformcomp}{Compagnie}%
+    \renewcommand{\sitLNGfbformcon}{Contact}%
+    \renewcommand{\sitLNGfbformtel}{Téléphone}%
+    \renewcommand{\sitLNGfbformfax}{Numéro de fax}%
+    \renewcommand{\sitLNGfbformcomment}{Commentaire}%
+    \renewcommand{\sitLNGof}{of}%
+    \renewcommand{\sitLNGdocnfoDate}{Date}%
+    \renewcommand{\sitLNGdocnfoDesc}{Description}%
+    \renewcommand{\sitLNGdocnfoAuth}{Auteur}%
+    \renewcommand{\sitLNGdocnfoResp}{Responsable}%
+    \renewcommand{\sitLNGdocnfohl}{Informations sur le document}%
+    \renewcommand{\sitLNGdocnfopersonnfoa}{}%
+    \renewcommand{\sitLNGdocnfopersonnfob}{CEO: Manfred Sielhorst}%
+    \renewcommand{\sitLNGdocnfopersonnfoc}{District court: Darmstadt, HRB 89028 }%
+    \renewcommand{\sitLNGdocnfoend}{Pour plus de détails visité notre page web:}%
+    \renewcommand{\sitLNGappend}{Appendix}
+    \renewcommand{\sitLNGbib}{Bibliography}%
+    \renewcommand{\sitLNGcontentsname}{Table des matières}%
+    \renewcommand{\sitLNGlistfigurename}{Table des illustrations}%
+    \renewcommand{\sitLNGlisttablename}{Table des tabulaires}%
+    \renewcommand{\sitLNGlistlistingsname}{Table des code sources}
+    \renewcommand{\sitLNGrefname}{References}%
+    \renewcommand{\sitLNGindexname}{Index}%
+    \renewcommand{\sitLNGfigurename}{Figure}%
+    \renewcommand{\sitLNGtablename}{Table}%
+    \renewcommand{\sitLNGchaptername}{Chapter}%
+    \renewcommand{\sitLNGpart}{Part}%
+    \renewcommand{\sitLNGappendixname}{Appendix}%
+    \renewcommand{\sitLNGabstractname}{Résumé}%
+    \renewcommand{\sitLNGcreatedat}{Déposer à}%
+    \renewcommand{\sitLNGcreatedby}{par}%
+    \renewcommand{\sitLNGhandedin}{Soumis par}%
+    \renewcommand{\sitLNGat}{à}%
+    \renewcommand{\sitLNGreferent}{Rapporteur}%
+    \renewcommand{\sitLNGkorreferent}{Corapporteur}%
+    \renewcommand{\sitLang}{fr}%
+}
+\DeclareOption*{}
+\ProcessOptions\relax%
+
+%% Import babel with the choosen language
+%%  Notice: If you flip the language you might need to cleanup
+%%          your directory first.
+
+\usepackage{ifthen}
+\ifthenelse{ \equal{\sitLang}{de} }{\usepackage[german]{babel}}{}
+\ifthenelse{ \equal{\sitLang}{en} }{\usepackage[english]{babel}}{}
+\ifthenelse{ \equal{\sitLang}{fr} }{\usepackage[french]{babel}}{}
+\usepackage{babelbib}
+
+%% Uses the above defined commands to set used elements.
+
+\renewcommand\contentsname{\sitLNGcontentsname}
+\renewcommand\listfigurename{\sitLNGlistfigurename}
+\renewcommand\listtablename{\sitLNGlisttablename}
+\renewcommand\lstlistlistingname{\sitLNGlistlistingsname}
+\renewcommand\indexname{\sitLNGidxinfo}
+\renewcommand\bibname{\sitLNGbib}
+\renewcommand\refname{\sitLNGrefname}
+\renewcommand\indexname{\sitLNGindexname}
+\renewcommand\figurename{\sitLNGfigurename}
+\renewcommand\tablename{\sitLNGtablename}
+\renewcommand\partname{\sitLNGpart}
+\renewcommand\chaptername{\sitLNGchaptername}
+\renewcommand\appendixname{\sitLNGappendixname}
+\renewcommand\abstractname{\sitLNGabstractname}
+
+%% Only set if minitoc was loaded
+\ifdefined\mtctitle
+\renewcommand{\ptctitle}{\sitLNGptctitle}
+\renewcommand{\plftitle}{\sitLNGplftitle}
+\renewcommand{\plttitle}{\sitLNGplttitle}
+\renewcommand{\mtctitle}{\sitLNGmtctitle}
+\renewcommand{\mlftitle}{\sitLNGmlftitle}
+\renewcommand{\mlttitle}{\sitLNGmlttitle}
+\renewcommand{\stctitle}{\sitLNGstctitle}
+\renewcommand{\slftitle}{\sitLNGslftitle}
+\renewcommand{\slttitle}{\sitLNGslttitle}
+\fi
+
+%% Only set if sitGuideStyle is loaded
+\ifdefined\sithdrdocu
+\renewcommand{\sithdrdocu}{\sitLNGhdrdocu}
+\fi
+\ifdefined\sitsecnote
+\renewcommand{\sitsecnote}{\sitLNGsecnote}
+\fi
+\ifdefined\sitappend
+\renewcommand{\sitappend}{\sitLNGappend}
+\fi
+\ifdefined\sitof
+\renewcommand{\sitof}{\sitLNGof}
+\fi
+\ifdefined\sitfba
+\renewcommand{\sitfba}{\sitLNGfba}
+\renewcommand{\sitfbb}{\sitLNGfbb}
+\renewcommand{\sitfbc}{\sitLNGfbc}
+\renewcommand{\sitfbd}{\sitLNGfbd}
+\renewcommand{\sitfbformcomp}{\sitLNGfbformcomp}
+\renewcommand{\sitfbformcon}{\sitLNGfbformcon}
+\renewcommand{\sitfbformtel}{\sitLNGfbformtel}
+\renewcommand{\sitfbformfax}{\sitLNGfbformfax}
+\renewcommand{\sitfbformcomment}{\sitLNGfbformcomment}
+\fi
+\ifdefined\sitdocnfohl
+\renewcommand{\sitdocnfohl}{\sitLNGdocnfohl}
+\renewcommand{\sitdocnfoDate}{\sitLNGdocnfoDate}
+\renewcommand{\sitdocnfoDesc}{\sitLNGdocnfoDesc}
+\renewcommand{\sitdocnfoAuth}{\sitLNGdocnfoAuth}
+\renewcommand{\sitdocnfoResp}{\sitLNGdocnfoResp}
+\renewcommand{\sitdocnfopersonnfoa}{\sitLNGdocnfopersonnfoa}
+\renewcommand{\sitdocnfopersonnfob}{\sitLNGdocnfopersonnfob}
+\renewcommand{\sitdocnfopersonnfoc}{\sitLNGdocnfopersonnfoc}
+\renewcommand{\sitdocnfoend}{\sitLNGdocnfoend}
+\fi
+
+
+\ifdefined\sitcreatedby
+\renewcommand{\sitcreatedby}{\sitLNGcreatedby}
+\fi
+\ifdefined\sitcreatedat
+\renewcommand{\sitcreatedat}{\sitLNGcreatedat}
+\fi
+\ifdefined\sitabstractname
+\renewcommand{\sitabstractname}{\sitLNGabstractname}
+\fi

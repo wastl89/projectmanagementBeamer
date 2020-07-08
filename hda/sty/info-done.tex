@@ -1,0 +1,12 @@
+\newcommand{\sitDone}[2][\sitLNGstddone]{
+\begin{minipage}[t]{\linewidth}
+  \setlength\arrayrulewidth{4pt}
+	\begin{tabularx}{\linewidth}{r !{\color{infoGreen}\vline} X}
+        \raisebox{-10pt}[0mm][0mm]{%
+            \includegraphics[origin=c,width=22pt]{hda/img/info-icon-done.png}}
+            & {\Large #1} \\
+            & #2 
+        \index[idxInfo-\jobname]{D@\sitLNGidxdone ! #1}
+	\end{tabularx}
+\end{minipage}
+} 

@@ -1,0 +1,9 @@
+% language, path/filename.ext, more options
+%  [bash], {name.bsh}, {firstline=2,lastline=5,caption=,label=lst:}
+\newcommand{\sitCode}[3][TeX]{%
+	\lstinputlisting[style=sitListingStyle,
+        caption=\texttt{\lstname} \newline{} \textbullet{} #3,
+        language={#1}
+    ]{#2}
+}
+% eof

@@ -1,0 +1,30 @@
+%% frame[]:  fragile, t,c,b, shrink=15
+\begin{frame}[c]{\frametitlelogo{Bidirektionaler Mosfet Pegelwandler
+}{hda/pp/hda/img/hda-fbe-logo}}
+
+\begin{figure}
+  \begin{circuitikz}
+
+
+
+    \draw (0,0) node[nigfete, rotate=270](Q1) {}
+    (Q1.gate) node[anchor=east] {}
+    (Q1.drain) node[anchor=south] {}
+    (Q1.source) node[anchor=north] {};
+    \draw (Q1.gate) to[short] ++(0,1)
+    to[short] ++(-2.5,0);
+    \draw (Q1.drain) to[short] ++(2,0) to[R, l2_=$R_1$ and \SI {10}{k\ohm}] ++(0,2)
+    node[vcc](){\SI{5}{V}};
+    \draw (Q1.source) to[short] ++(-2,0) to[R, l2_=$R_2$ and \SI {10}{k\ohm}] ++(0,2)
+    node[vcc](){\SI{3.3}{V}};
+    \ctikzset{diodes/scale=0.5}
+    \draw (Q1.source) to[short] ++(0,-0.4) to[diode] ++(1.55,0) to[short](Q1.collector);
+    %\draw (Q1.collector) to[short, -o] ++(2,0) node[right]{$IO_1$};
+    %\draw (Q1.source) to[short, -o] ++(2,0) node[right]{$IO_2$};
+  \end{circuitikz}
+  \caption{MosFet Bidirektional}
+  \label{fig:mosfet}
+\end{figure}
+
+\end{frame}
+% eof 

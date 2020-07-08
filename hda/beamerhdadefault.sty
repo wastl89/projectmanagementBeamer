@@ -1,0 +1,39 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesClass{hda/beamerhdadefault}[2016/03/12 v1.00 by jonathan sielhorst/ manfred sielhorst]
+\usepackage{tabularx}
+\usepackage{color, xcolor, multido}
+
+\usepackage{graphicx,xmpmulti}
+\usepackage{multimedia}
+\usepackage{algpseudocode,eqnarray}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+\usepackage{tikz}
+\usetikzlibrary{snakes,arrows,shapes}
+\usepackage{mathtools}
+\usepackage{amsmath}
+
+
+\tikzset{
+  invisible/.style={opacity=0},
+  visible on/.style={alt=#1{}{invisible}},
+  alt/.code args={<#1>#2#3}{%
+    \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+  }
+}
+
+\newcommand{\frametitlelogo}[2]{%
+{\parbox[t]{0.7\textwidth}{#1}} \includegraphics[width=3cm]{#2}}
+
+
+\newcommand{\sitSection}[2][\insertsubtitle]{%
+  \section{#2}%
+  \subsection{#1}}
+
+\newcommand{\sitLink}[1]{%
+  \urlstyle{same}%
+  {\usebeamercolor[fg]{url} \url{#1}}}
+
+\newcommand{\sitHref}[2][]{%
+  \ifthenelse{\equal{#1}{}}{\sitLink{#2}}{{\usebeamercolor[fg]{url} \href{#2}{#1}}}}

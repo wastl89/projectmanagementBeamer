@@ -1,0 +1,19 @@
+  \usepackage{listings} % Voraussetzung für \sitCode, ...
+
+  \newcommand{\sitCode}[2][TeX]{%
+	\lstinputlisting[
+        commentstyle=\color{greenH},        % Kommentarfarbe
+        keywordstyle={\color{blue}\bfseries}, % Keywordfarbe
+        stringstyle =\itshape \color{redH}, % Stringfarbe
+        basicstyle=\ttfamily\small,
+        frame=single,                       % Framestil
+        language={#1},                      % Programmiersprache
+        numbers=left,                       % Zeilennummern
+        showstringspaces=false,	   % Leerzeichen werden nicht unterstrichen
+        %showtabs=false,	       % tabs im string werden nicht gezeigt
+        breaklines=true,           % Zeilenumbruch aktiviert
+        captionpos=b,              % Beschriftung ist unterhalb
+        numberstyle=\tiny,         % kleine Zeilennummern
+    ]{#2}
+    }
+%eof

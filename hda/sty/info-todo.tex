@@ -1,0 +1,12 @@
+\newcommand{\sitTodo}[2][\sitLNGstdtodo]{
+\begin{minipage}[t]{\linewidth}
+  \setlength\arrayrulewidth{4pt}
+	\begin{tabularx}{\linewidth}{r !{\color{infoViolett}\vline} X}
+        \raisebox{-10pt}[0mm][0mm]{%
+            \includegraphics[origin=c,width=22pt]{hda/img/info-icon-todo.png}}
+            & {\Large #1} \\
+            & #2 
+        \index[idxInfo-\jobname]{E@\sitLNGidxtodos ! #1}
+	\end{tabularx}
+\end{minipage}
+} 
