@@ -25,6 +25,7 @@
     \draw (Q1.drain) to[open] ++(2,0) to[R, l2_=$R_1$ and \SI {10}{k\ohm}] ++(0,2)
     node[vcc](){\SI{5}{V}};
     % to IO1
+    \draw<1-> (Q1.drain) to[open] ++(2,0) to[open] ++(0,-1) node[vee, color=white]{\SI{5}{V}};
     \draw<1> (Q1.drain) to[short] ++(2,0) to[short, -o] ++(0,-1) node[right]{$IO_1$};
     \draw<2> (Q1.drain) to[short] ++(2,0) to[short, -] ++(0,-1) node[vee]{\SI{5}{V}};
     \draw<3,4> (Q1.drain) to[short] ++(2,0) to[short, -] ++(0,-1) node[ground]{};

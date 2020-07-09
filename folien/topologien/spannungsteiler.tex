@@ -4,9 +4,10 @@
 
 \begin{figure}
   \begin{circuitikz}
+    \draw<1>[white] (0,4) to[R, v=$U_1$, color=white] (0,2); %Dummy resistor for Alining the Divider so the picture has the same width as the ones with voltage Arrow
     \draw<1> (0,4) node[right]{$input$}
-      to[R=$R1$] (0,2)
-      to[R=$R2$] (0,0) ;
+      to[R=$R1$] (0,2) 
+      to[R=$R2$] (0,0); 
     \draw<2> (0,4) node[right]{$input$}
       to[R=$R1$, v=$U_1$] (0,2)
       to[R=$R2$] (0,0) ;
