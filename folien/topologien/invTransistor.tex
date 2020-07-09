@@ -4,18 +4,23 @@
 
 \begin{figure}
   \begin{circuitikz}
-    \draw (0,0) node[npn](Q1) {2N2222}
+    \draw<1> (0,0) node[npn](Q1) {2N2222}
     (Q1.base) node[anchor=east] {}
     (Q1.collector) node[anchor=south] {}
     (Q1.emitter) node[anchor=north] {};
-    \draw (Q1.collector) to[R, l2=$R_1$ and \SI {10}{k\ohm}, color=red] ++(0,2)
+    \draw<2> (0,0) node[npn, color=red](Q1) {2N2222}
+    (Q1.base) node[anchor=east] {}
+    (Q1.collector) node[anchor=south] {}
+    (Q1.emitter) node[anchor=north] {};
+    \draw[red] (Q1.collector) to[R, l2=$R_1$ and \SI {10}{k\ohm}, color=red] ++(0,2)
     node[vcc, color=red](){\SI{3.3}{V}};
-    \draw<1> (Q1.collector) to[short, -o] ++(2,0) node[right, color=red]{$output$};
+    \draw<1>[red] (Q1.collector) to[short, -o] ++(2,0) node[right]{$output$};
     \draw<2> (Q1.collector) to[short, -o] ++(2,0) node[right]{$output$};
-    \draw (Q1.emitter) node[ground] {} ++(0,-1);
+    \draw<1> (Q1.emitter) node[ground] {} ++(0,-1);
+    \draw<2>[red] (Q1.emitter) node[ground] {} ++(0,-1);
     \draw<1> (Q1.base) to[R, -o, l2=$R_2$ and \SI {10}{k\ohm}] ++(-2,0)
     node[left]{$input$};
-    \draw<2> (Q1.base) to[R, -o, l2=$R_2$ and \SI {10}{k\ohm}] ++(-2,0)
+    \draw<2>[red] (Q1.base) to[R, -o, l2=$R_2$ and \SI {10}{k\ohm}, color=red] ++(-2,0)
     node[left, color=red]{$input$};
   \end{circuitikz}
   \caption{inv. Transistor}
