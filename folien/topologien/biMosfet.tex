@@ -19,8 +19,8 @@
     node[vcc](){\SI{3.3}{V}};
     \ctikzset{diodes/scale=0.5}
     \draw (Q1.source) to[short] ++(0,-0.4) to[diode] ++(1.55,0) to[short](Q1.collector);
-    %\draw (Q1.collector) to[short, -o] ++(2,0) node[right]{$IO_1$};
-    %\draw (Q1.source) to[short, -o] ++(2,0) node[right]{$IO_2$};
+    \draw (Q1.collector) to[short] ++(2,0) to[short, -o] ++(0,-1) node[right]{$IO_1$};
+    \draw (Q1.source) to[short] ++(-2,0) to[short, -o] ++(0,-1) node[right]{$IO_2$};
   \end{circuitikz}
   \caption{MosFet Bidirektional}
   \label{fig:mosfet}
