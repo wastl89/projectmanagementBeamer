@@ -1,0 +1,29 @@
+%% frame[]:  fragile, t,c,b, shrink=15
+\begin{frame}[c]{\frametitlelogo{Parameter für den Vergleich
+  }{hda/pp/hda/img/hda-fbe-logo}}
+
+  % Preise @1000 Pieces Digikey
+  % Widerstand -    0.00175
+  % MMBT2222 -      0.02000
+  % 2N7002NXAKR -   0.0174
+
+  \begin{table}
+    \small
+    \begin{tabular}{l|l|l|l}
+      & Spannungsteiler & inv. Transistor & MofFet Wandler \\
+      \hline 
+      Eingangswiderstand        & 24k   & 10k    & 5k || $\infty$ \\
+      Ausgangswiderstand        & 8     & 6k3    & 10k \\
+      Geschwindigkeit High      & 34ns  & 80ns   & 40ps \\
+      Geschwindigkeit Low       & 43ns  & 893ns  & 46ps \\
+      Komplexität               & +++   & +      & +  \\
+      Direktionalem Verhalten   & -     & +      & +++ \\
+      Preis                     & 3.5\$ & 23,5\$ & 20.9\$ \\
+    \end{tabular}
+    \caption{Vergleichstabelle mit $U_{input} = \SI {5}{V} $ und $U_{output} = \SI {3.3}{V} $}
+    \label{table:tabelle-vergleich1}
+  
+  \end{table}
+    
+\end{frame}
+  % eof 

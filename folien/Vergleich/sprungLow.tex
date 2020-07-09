@@ -1,0 +1,28 @@
+%% frame[]:  fragile, t,c,b, shrink=15
+\begin{frame}[c]{\frametitlelogo{Sprungantwort 5V-0V
+  }{hda/pp/hda/img/hda-fbe-logo}}
+    
+
+  \begin{tikzpicture}
+    \begin{axis}[
+    xlabel=time,
+    ylabel=Spannung,
+    mark=none,
+    height=6cm,
+    width=12cm,
+    legend entries={Sprung,Widerstand,Transistor,Mosfet},
+    ]
+    \only<1->{\addplot table [x=time,y=V(n005),mark=none] {folien/Vergleich/low.txt};}
+    \only<2->{\addplot table [x=time,y=V(n002),mark=none] {folien/Vergleich/low.txt};}
+    \only<3->{\addplot table [x=time,y=V(n004),mark=none] {folien/Vergleich/low.txt};}
+    \only<4->{\addplot table [x=time,y=V(n009),mark=none] {folien/Vergleich/low.txt};}
+    \only<5->{\addplot[color=black, style=dashed] coordinates {(0,1.85) (1e-6,1.85)};}
+    \only<5->{\addplot[color=black, style=dashed] coordinates {(0,1.06) (1e-6,1.06)};}
+    \end{axis}
+  \end{tikzpicture}
+  \only<6->{Spannungsteiler: 43ns}
+  \only<7->{Transistor: 893ns}
+  \only<8->{Mosfet: 46ps}
+    
+\end{frame}
+  % eof 
