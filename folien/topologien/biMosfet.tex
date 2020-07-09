@@ -4,23 +4,41 @@
 
 \begin{figure}
   \begin{circuitikz}
-
-
-
-    \draw (0,0) node[nigfete, rotate=270](Q1) {}
+    %Mosfet
+    \draw<1-4> (0,0) node[nigfete, rotate=270](Q1) {}
     (Q1.gate) node[anchor=east] {}
     (Q1.drain) node[anchor=south] {}
     (Q1.source) node[anchor=north] {};
-    \draw (Q1.gate) to[short] ++(0,1)
-    to[short] ++(-2.5,0);
-    \draw (Q1.drain) to[short] ++(2,0) to[R, l2_=$R_1$ and \SI {10}{k\ohm}] ++(0,2)
-    node[vcc](){\SI{5}{V}};
-    \draw (Q1.source) to[short] ++(-2,0) to[R, l2_=$R_2$ and \SI {10}{k\ohm}] ++(0,2)
-    node[vcc](){\SI{3.3}{V}};
+    \draw<5>[red] (0,0) node[nigfete, color=red, rotate=270](Q1) {};
+    %Body diode
     \ctikzset{diodes/scale=0.5}
-    \draw (Q1.source) to[short] ++(0,-0.4) to[diode] ++(1.55,0) to[short](Q1.collector);
-    \draw (Q1.collector) to[short] ++(2,0) to[short, -o] ++(0,-1) node[right]{$IO_1$};
-    \draw (Q1.source) to[short] ++(-2,0) to[short, -o] ++(0,-1) node[right]{$IO_2$};
+    \draw<1-3> (Q1.source) to[short] ++(0,-0.4) to[diode] ++(1.55,0) to[short](Q1.collector);
+    \draw<4->[red] (Q1.source) to[short] ++(0,-0.4) to[diode, color=red] ++(1.55,0) to[short](Q1.collector);
+    
+    
+    % Gate Leitung
+    \draw<1> (Q1.gate) to[short] ++(0,1) to[short] ++(-2.5,0);
+    \draw<2->[red] (Q1.gate) to[short] ++(0,1) to[short] ++(-2.5,0);
+
+    % Drain
+    % over R1 to 5V
+    \draw (Q1.drain) to[open] ++(2,0) to[R, l2_=$R_1$ and \SI {10}{k\ohm}] ++(0,2)
+    node[vcc](){\SI{5}{V}};
+    % to IO1
+    \draw<1> (Q1.drain) to[short] ++(2,0) to[short, -o] ++(0,-1) node[right]{$IO_1$};
+    \draw<2> (Q1.drain) to[short] ++(2,0) to[short, -] ++(0,-1) node[vee]{\SI{5}{V}};
+    \draw<3,4> (Q1.drain) to[short] ++(2,0) to[short, -] ++(0,-1) node[ground]{};
+    \draw<5->[red] (Q1.drain) to[short] ++(2,0) to[short, -] ++(0,-1) node[ground]{};
+    
+    % Source
+    %over R2 to 3V3
+    \draw<1> (Q1.source) to[short] ++(-2,0) to[R, l2_=$R_2$ and \SI {10}{k\ohm}] ++(0,2)
+    node[vcc](){\SI{3.3}{V}};
+    \draw<2->[red] (Q1.source) to[short] ++(-2,0) to[R, color=red, l2_=$R_2$ and \SI {10}{k\ohm}] ++(0,2)
+    node[vcc](){\SI{3.3}{V}};
+    %to IO2
+    \draw<1,4-> (Q1.source) to[open] ++(-2,0) to[short, -o] ++(0,-1) node[right]{$IO_2$};
+    \draw<2,3>[red] (Q1.source) to[open] ++(-2,0) to[short, -o] ++(0,-1) node[right]{$IO_2$};
   \end{circuitikz}
   \caption{MosFet Bidirektional}
   \label{fig:mosfet}
